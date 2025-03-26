@@ -12,13 +12,13 @@ def main(page: ft.Page):
     )
 
     def volver(e):
-        page.go("/registroPage")
+        page.go("registroPage")
         page.update()
 
 
     usuario_tf = ft.TextField(label="Usuario o Contraseña")
     contrasena_tf = ft.TextField(label="Contraseña")
-    volver_btn = ft.ElevatedButton(text="Registrarse", on_click=volver)
+    volver_btn = ft.FilledButton(text="Registrarse", on_click=volver)
 
     columna = ft.Column(
         alignment=ft.CrossAxisAlignment.CENTER,
@@ -27,16 +27,18 @@ def main(page: ft.Page):
             ft.Text("LOGIN"),
             usuario_tf,
             contrasena_tf,
-            ft.ElevatedButton("Aceptar"),
+            ft.FilledButton("Aceptar"),
             volver_btn,
         ]
     )
     fila = ft.Row(controls=[columna],
             alignment=ft.MainAxisAlignment.CENTER,
     )
-    #return columna
+
+    page.update()
     contenedor.content = fila
     page.add(contenedor)
-    page.update()
+
+    return columna
 
 ft.app(target=main, view=ft.WEB_BROWSER)

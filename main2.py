@@ -1,5 +1,4 @@
 import flet as ft
-from flet.core import page
 
 import loginPage
 import registroPage
@@ -10,22 +9,22 @@ def main(page: ft.Page):
     def route_change(e):
         page.views.clear()
 
-        if page.route == "/loginPage":
+        if page.route == "loginPage":
             page.views.append(
                 ft.View(
-                    route="/loginPage",
+                    route="loginPage",
                     controls=[loginPage.main(page)]
                 )
             )
-        elif page.route == "/registroPage":
+        elif page.route == "registroPage":
             page.views.append(
                 ft.View(
-                    route="/registroPage",
+                    route="registroPage",
                     controls=[registroPage.main(page)]
                 )
             )
         else:
-            page.go("/loginPage")
+            page.go("loginPage")
 
         page.update()
 
@@ -33,4 +32,4 @@ def main(page: ft.Page):
     page.go("/loginPage")
 
 if __name__ == "__main__":
-    ft.app(target=main, view=ft.WEB_BROWSER, PORT = 8080)
+    ft.app(target=main, view=ft.WEB_BROWSER)

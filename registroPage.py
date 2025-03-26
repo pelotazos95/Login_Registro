@@ -27,16 +27,20 @@ def main(page: ft.Page):
         height=page.height,
     )
 
+    #def meter_datos(e):
+
+
     def volver(e):
-        page.go("/loginPage")
+        page.go("loginPage")
 
     nombre_tf = ft.TextField(label="Nombre")
     apellido_tf = ft.TextField(label="Apellidos")
     email_tf = ft.TextField(label="Email")
     contrasena_tf = ft.TextField(label="Contraseña")
+    datos = ft.FilledButton("Finalizar Registro", on_click=obtener_valores)#, on_click = meter_datos())
     dialog = ft.AlertDialog(modal=True, title=ft.Text("Informacion"), content=ft.Text("Hola"),
                        actions=[ft.TextButton("Aceptar",on_click=cerrar_dialog),])
-    volver_btn = ft.ElevatedButton(text="Volver al Login",on_click=volver)
+    volver_btn = ft.FilledButton(text="Volver al Login",on_click=volver)
 
     columna = ft.Column(
         alignment=ft.CrossAxisAlignment.CENTER,
@@ -47,20 +51,18 @@ def main(page: ft.Page):
             apellido_tf,
             email_tf,
             contrasena_tf,
-            ft.ElevatedButton("Finalizar Registro", on_click=obtener_valores),
+            datos,
             volver_btn,
         ]
     )
     fila = ft.Row(controls=[columna],
         alignment=ft.MainAxisAlignment.CENTER,
     )
-    #return columna
-
-
 
     contenedor.content = fila
     page.overlay.append(dialog)
     page.add(contenedor)
 
+    return columna
 
 ft.app(target=main, view=ft.WEB_BROWSER)
