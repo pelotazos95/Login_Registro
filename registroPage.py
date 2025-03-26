@@ -14,14 +14,6 @@ def main(page: ft.Page):
         dialog.open = False
         page.update()
 
-    def selecionar_fecha(e):
-        fecha_tx.value = f"Fecha: {fecha_dp.value.day}/{fecha_dp.value.month}/{fecha_dp.value.year}"
-        page.update()
-
-    def abrir_selector(e):
-        fecha_dp.open = True
-        page.update()
-
     def obtener_valores(e):
         email = email_tf.value
         if email == "":
@@ -36,7 +28,7 @@ def main(page: ft.Page):
     )
 
     def volver(e):
-        page.go("/main")
+        page.go("/loginPage")
 
     nombre_tf = ft.TextField(label="Nombre")
     apellido_tf = ft.TextField(label="Apellidos")
@@ -44,7 +36,7 @@ def main(page: ft.Page):
     contrasena_tf = ft.TextField(label="Contraseña")
     dialog = ft.AlertDialog(modal=True, title=ft.Text("Informacion"), content=ft.Text("Hola"),
                        actions=[ft.TextButton("Aceptar",on_click=cerrar_dialog),])
-    volver_btn = ft.ElevatedButton(text="Volver a Navegacion",on_click=volver)
+    volver_btn = ft.ElevatedButton(text="Volver al Login",on_click=volver)
 
     columna = ft.Column(
         alignment=ft.CrossAxisAlignment.CENTER,
@@ -55,14 +47,14 @@ def main(page: ft.Page):
             apellido_tf,
             email_tf,
             contrasena_tf,
-            ft.ElevatedButton("Crear Tarea", on_click=obtener_valores),
+            ft.ElevatedButton("Finalizar Registro", on_click=obtener_valores),
             volver_btn,
         ]
     )
     fila = ft.Row(controls=[columna],
         alignment=ft.MainAxisAlignment.CENTER,
     )
-
+    return columna
 
 
 
