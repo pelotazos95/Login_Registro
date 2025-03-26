@@ -54,7 +54,7 @@ def main(page: ft.Page):
     fila = ft.Row(controls=[columna],
         alignment=ft.MainAxisAlignment.CENTER,
     )
-    return columna
+    #return columna
 
 
 
