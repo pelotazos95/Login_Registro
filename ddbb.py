@@ -10,16 +10,32 @@ def connect():
     )
     return conn
 
-def insertar_usuario(v_nombre,v_apellido,v_email,v_contraseña):
+def obtener_usuarios():
+    conn = connect()
+    try:
+        cursor = conn.cursor()
+        query = """SELECT * FROM usuario"""
+        cursor.execute(query)
+        usuario = cursor.fetchall()
+        print(usuario)
+    except Exception as e:
+        print(e)
+    finally:
+        if conn is not None:
+            cursor.close()
+            conn.close()
+    return usuario
+
+def insertar_usuario(v_nombre,v_apellido,v_email,v_passwd):
     conn = connect()
 
     try:
         cursor = conn.cursor()
         query = """
-            INSERT INTO usuarios(nombre,apellido,email,contraseña)
+            INSERT INTO usuarios(nombre,apellido,email,passwd)
             VALUES(%s,%s,%s,%s)
             """
-        cursor.execute(query, (v_nombre,v_apellido,v_email,v_contraseña))
+        cursor.execute(query, (v_nombre,v_apellido,v_email,v_passwd))
         conn.commit()
         print("Usuario insertado correctamente")
     except Exception as e:

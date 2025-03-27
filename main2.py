@@ -9,27 +9,26 @@ def main(page: ft.Page):
     def route_change(e):
         page.views.clear()
 
-        if page.route == "loginPage":
+        if page.route == "/login":
             page.views.append(
                 ft.View(
-                    route="loginPage",
+                    route="/login",
                     controls=[loginPage.main(page)]
                 )
             )
-        elif page.route == "registroPage":
+        elif page.route == "/registro":
             page.views.append(
                 ft.View(
-                    route="registroPage",
+                    route="/registro",
                     controls=[registroPage.main(page)]
                 )
             )
-        else:
-            page.go("loginPage")
 
         page.update()
 
+
     page.on_route_change = route_change
-    page.go("/loginPage")
+    page.go("/login")
 
 if __name__ == "__main__":
-    ft.app(target=main, view=ft.WEB_BROWSER)
+    ft.app(target=main, view=ft.WEB_BROWSER,port=8080)

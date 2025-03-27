@@ -12,12 +12,12 @@ def main(page: ft.Page):
     )
 
     def volver(e):
-        page.go("registroPage")
+        page.go("/registro")
         page.update()
 
 
-    usuario_tf = ft.TextField(label="Usuario o Contraseña")
-    contrasena_tf = ft.TextField(label="Contraseña")
+    usuario_tf = ft.TextField(label="Usuario o Email")
+    passwd_tf = ft.TextField(label="Contraseña")
     volver_btn = ft.FilledButton(text="Registrarse", on_click=volver)
 
     columna = ft.Column(
@@ -26,7 +26,7 @@ def main(page: ft.Page):
         controls=[
             ft.Text("LOGIN"),
             usuario_tf,
-            contrasena_tf,
+            passwd_tf,
             ft.FilledButton("Aceptar"),
             volver_btn,
         ]
@@ -40,5 +40,3 @@ def main(page: ft.Page):
     page.add(contenedor)
 
     return columna
-
-ft.app(target=main, view=ft.WEB_BROWSER)
