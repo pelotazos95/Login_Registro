@@ -35,7 +35,7 @@ def main(page: ft.Page):
         nombre = nombre_tf.value
         apellido = apellido_tf.value
         email = email_tf.value
-        password = passwd_tf
+        password = passwd_tf.value
         mensaje = None
         if nombre == "" or nombre is None:
             mensaje = ("Tienes q indicar el nombre")
