@@ -15,11 +15,17 @@ def main(page: ft.Page):
     def cerrar_dialog(e):
         dialog.open = False
         page.update()
+        page.go("/principal")
+        page.update()
 
     def mostrar_mensaje(mensaje):
         print(mensaje)
         dialog.content = ft.Text(mensaje)
         dialog.open = True
+        page.update()
+
+    def selecionar_fecha(e):
+        fecha_tx.value = f"Fecha: {fecha_dp.value.day}/{fecha_dp.value.month}/{fecha_dp.value.year}"
         page.update()
 
     def comprobar_datos(e):
@@ -43,9 +49,11 @@ def main(page: ft.Page):
         page.update()
 
 
-    usuario_tf = ft.TextField(label="Email")
-    passwd_tf = ft.TextField(label="Contraseña")
+    usuario_tf = ft.TextField(label="Email",width=300)
+    passwd_tf = ft.TextField(label="Contraseña",width=300)
     volver_btn = ft.FilledButton(text="Registrarse", on_click=volver)
+    fecha_dp = ft.DatePicker(value=datetime.datetime.now(), on_change=selecionar_fecha)
+    fecha_tx = ft.Text(f"Ultimo Login: {fecha_dp.value.day}/{fecha_dp.value.month}/{fecha_dp.value.year}")
     dialog = ft.AlertDialog(
         modal=True,
         title=ft.Text("YEAAAAAH BUDYYYYYYYY"),
@@ -61,6 +69,7 @@ def main(page: ft.Page):
             ft.Text("LOGIN"),
             usuario_tf,
             passwd_tf,
+            fecha_tx,
             ft.FilledButton("Aceptar", on_click = comprobar_datos),
             volver_btn,
         ]
@@ -69,9 +78,10 @@ def main(page: ft.Page):
             alignment=ft.MainAxisAlignment.CENTER,
     )
 
-    page.update()
     contenedor.content = fila
     page.overlay.append(dialog)
     page.add(contenedor)
+    page.update()
+
 
     return columna

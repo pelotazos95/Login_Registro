@@ -90,7 +90,7 @@ def main(page: ft.Page):
     dias_drop = ft.Dropdown(label="Dias",options=obtener_dias(),width=300)
     mes_tf = ft.TextField(label="Mes")
     mes_drop = ft.Dropdown(label="Mes",options=obtener_mes(),width=300)
-    evento_tf = ft.TextField(label="Evento")
+    evento_tf = ft.TextField(label="Evento",width=300)
     fecha_dp = ft.DatePicker(value=datetime.datetime.now(), on_change=selecionar_fecha)
     fecha_tx = ft.Text(f"Fecha: {fecha_dp.value.day}/{fecha_dp.value.month}/{fecha_dp.value.year}")
     boton_fecha = ft.ElevatedButton("Seleciona la fecha",on_click=abrir_selector)
@@ -126,5 +126,7 @@ def main(page: ft.Page):
     page.overlay.append(dialog)
     page.add(contenedor)
 
+    return columna
 
-ft.app(target=main, view=ft.WEB_BROWSER)
+
+#ft.app(target=main, view=ft.WEB_BROWSER)

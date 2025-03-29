@@ -1,4 +1,6 @@
 import psycopg2
+from flet.core import page
+
 
 def connect():
     conn = psycopg2.connect(
@@ -58,6 +60,8 @@ def comprobar_usuario(v_email,v_passwd):
             print("Usuario no existe")
         else:
             cursor.execute(query, (v_email,v_passwd))
+            page.go("/principal")
+            page.update()
 
     except Exception as e:
         print(e)

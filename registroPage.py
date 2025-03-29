@@ -24,6 +24,10 @@ def main(page: ft.Page):
         dialog.open = True
         page.update()
 
+    def selecionar_fecha(e):
+        fecha_tx.value = f"Fecha: {fecha_dp.value.day}/{fecha_dp.value.month}/{fecha_dp.value.year}"
+        page.update()
+
     contenedor = ft.Container(
         padding=10,
         bgcolor=ft.Colors.BLUE_500,
@@ -57,14 +61,16 @@ def main(page: ft.Page):
     def volver(e):
         page.go("/login")
 
-    nombre_tf = ft.TextField(label="Nombre")
-    apellido_tf = ft.TextField(label="Apellidos")
-    email_tf = ft.TextField(label="Email")
-    passwd_tf = ft.TextField(label="Contraseña")
+    nombre_tf = ft.TextField(label="Nombre",width=300)
+    apellido_tf = ft.TextField(label="Apellidos",width=300)
+    email_tf = ft.TextField(label="Email",width=300)
+    passwd_tf = ft.TextField(label="Contraseña",width=300)
     datos = ft.FilledButton("Finalizar Registro", on_click= meter_datos)
     #dialog = ft.AlertDialog(modal=True, title=ft.Text("CHE, QUIETO PARAO"), content=ft.Text("Hola"),
                        #actions=[ft.TextButton("Aceptar",on_click=cerrar_dialog),])
     volver_btn = ft.FilledButton(text="Volver al Login",on_click=volver)
+    fecha_dp = ft.DatePicker(value=datetime.datetime.now(), on_change=selecionar_fecha)
+    fecha_tx = ft.Text(f"Ultimo Login: {fecha_dp.value.day}/{fecha_dp.value.month}/{fecha_dp.value.year}")
     dialog = ft.AlertDialog(
         modal=True,
         title=ft.Text("HEY CHAVAL"),
@@ -82,6 +88,7 @@ def main(page: ft.Page):
             apellido_tf,
             email_tf,
             passwd_tf,
+            fecha_tx,
             datos,
             volver_btn,
         ]
