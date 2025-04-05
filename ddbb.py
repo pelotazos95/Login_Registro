@@ -60,7 +60,7 @@ def comprobar_usuario(v_email,v_passwd):
             print("Usuario no existe")
         else:
             cursor.execute(query, (v_email,v_passwd))
-            page.go("/principal")
+            page.go("/infoPage")
             page.update()
 
     except Exception as e:

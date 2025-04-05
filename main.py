@@ -1,5 +1,6 @@
 import flet as ft
 
+import infoPage
 import loginPage
 import principal
 import registroPage
@@ -24,11 +25,11 @@ def main(page: ft.Page):
                     controls=[registroPage.main(page)]
                 )
             )
-        elif page.route == "/principal":
+        elif page.route == "/infoPage":
             page.views.append(
                 ft.View(
-                    route="/principal",
-                    controls=[principal.main(page)]
+                    route="/infoPage",
+                    controls=[infoPage.main(page)]
                 )
             )
 

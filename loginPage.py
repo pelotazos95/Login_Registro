@@ -15,7 +15,7 @@ def main(page: ft.Page):
     def cerrar_dialog(e):
         dialog.open = False
         page.update()
-        page.go("/principal")
+        page.go("/infoPage")
         page.update()
 
     def mostrar_mensaje(mensaje):
