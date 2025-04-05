@@ -4,7 +4,7 @@ from flet.core import page
 
 def connect():
     conn = psycopg2.connect(
-        dbname="sistemas",
+        dbname="basedatos_e",
         user="postgres",
         password="51_dam56",
         host="localhost",
