@@ -52,6 +52,10 @@ def main(page: ft.Page):
         page.go("/registro")
         page.update()
 
+    def acceder(e):
+        page.go("/infoPage")
+        page.update()
+
 
     usuario_tf = ft.TextField(label="Email",width=300)
     passwd_tf = ft.TextField(label="Contraseña",width=300)
