@@ -4,7 +4,7 @@ import loginPage
 
 def connect():
     conn = psycopg2.connect(
-        dbname="usuarios",
+        dbname="basedatos_e",
         user="postgres",
         password="51_dam56",
         host="localhost",
@@ -34,7 +34,7 @@ def insertar_usuario(v_nombre,v_apellido,v_email,v_passwd):
     try:
         cursor = conn.cursor()
         query = """
-            INSERT INTO usuarios(nombre,apellido,email,passwd)
+            INSERT INTO usuarios(nombre,apellidos,email,passwd)
             VALUES(%s,%s,%s,%s)
             """
         cursor.execute(query, (v_nombre,v_apellido,v_email,v_passwd))
