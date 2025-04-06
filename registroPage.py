@@ -60,6 +60,7 @@ def main(page: ft.Page):
 
     def volver(e):
         page.go("/login")
+        page.update()
 
     nombre_tf = ft.TextField(label="Nombre",width=300)
     apellido_tf = ft.TextField(label="Apellidos",width=300)

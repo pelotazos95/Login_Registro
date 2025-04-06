@@ -18,10 +18,15 @@ def main(page: ft.Page):
         page.go("/infoPage")
         page.update()
 
+    def error_datos(e):
+        dialog_cerrar.open = False
+        page.update()
+
+
     def mostrar_mensaje(mensaje):
         print(mensaje)
-        dialog.content = ft.Text(mensaje)
-        dialog.open = True
+        dialog_cerrar.content = ft.Text(mensaje)
+        dialog_cerrar.open = True
         page.update()
 
     def selecionar_fecha(e):
@@ -47,23 +52,16 @@ def main(page: ft.Page):
         page.go("/registro")
         page.update()
 
-    def volver_infoPage(e):
-        page.go("/infoPage")
-        page.update()
-
 
     usuario_tf = ft.TextField(label="Email",width=300)
     passwd_tf = ft.TextField(label="Contraseña",width=300)
     volver_btn = ft.FilledButton(text="Registrarse", on_click=volver)
     fecha_dp = ft.DatePicker(value=datetime.datetime.now(), on_change=selecionar_fecha)
     fecha_tx = ft.Text(f"Ultimo Login: {fecha_dp.value.day}/{fecha_dp.value.month}/{fecha_dp.value.year}")
-    dialog = ft.AlertDialog(
-        modal=True,
-        title=ft.Text("YEAAAAAH BUDYYYYYYYY"),
-        actions=[
-            ft.TextButton("Aceptar", on_click=cerrar_dialog),
-        ]
-    )
+    dialog = ft.AlertDialog(modal=True,title=ft.Text("YEAAAAAH BUDYYYYYYYY"),
+        actions=[ft.TextButton("Aceptar", on_click=cerrar_dialog),])
+    dialog_cerrar = ft.AlertDialog(modal=True,title=ft.Text("UUUUUYYYYYYY"),
+        actions=[ft.TextButton("Aceptar", on_click=error_datos),])
 
     columna = ft.Column(
         alignment=ft.CrossAxisAlignment.CENTER,
@@ -83,6 +81,7 @@ def main(page: ft.Page):
 
     contenedor.content = fila
     page.overlay.append(dialog)
+    page.overlay.append(dialog_cerrar)
     page.add(contenedor)
     page.update()
 
