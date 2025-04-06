@@ -52,14 +52,16 @@ def comprobar_usuario(v_email,v_passwd):
     try:
         cursor = conn.cursor()
         query = """
-            select * from usuarios
-            where email = %s
-            and passwd = %s;
+            select email,passwd from usuarios
+            where email = ?
+            and passwd = ?;
             """
-        if v_email != obtener_usuarios().email and v_passwd != obtener_usuarios().passwd:
+        cursor.execute(query, (v_email, v_passwd))
+        resultado = cursor.fetchone()
+
+        if resultado is None:
             print("Usuario no existe")
         else:
-            cursor.execute(query, (v_email,v_passwd))
             page.go("/infoPage")
             page.update()
 
