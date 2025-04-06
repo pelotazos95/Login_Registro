@@ -7,7 +7,7 @@ def connect():
         dbname="basedatos_e",
         user="postgres",
         password="51_dam56",
-        host="192.160.51.156",
+        host="localhost",
         port="4445"
     )
     return conn
