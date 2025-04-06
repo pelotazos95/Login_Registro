@@ -4,7 +4,7 @@ import loginPage
 
 def connect():
     conn = psycopg2.connect(
-        dbname="basedatos_e",
+        dbname="usuarios",
         user="postgres",
         password="51_dam56",
         host="localhost",
