@@ -15,8 +15,6 @@ def main(page: ft.Page):
     def cerrar_dialog(e):
         dialog.open = False
         page.update()
-        page.go("/infoPage")
-        page.update()
 
     def mostrar_mensaje(mensaje):
         print(mensaje)
@@ -42,10 +40,13 @@ def main(page: ft.Page):
             return
 
         ddbb.comprobar_usuario(email, password)
-        mostrar_mensaje("USUARIO CORRECTO")
 
     def volver(e):
         page.go("/registro")
+        page.update()
+
+    def volver_infoPage(e):
+        page.go("/infoPage")
         page.update()
 
 

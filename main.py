@@ -1,5 +1,5 @@
 import flet as ft
-
+import ddbb
 import infoPage
 import loginPage
 import principal
@@ -40,4 +40,4 @@ def main(page: ft.Page):
     page.go("/login")
 
 if __name__ == "__main__":
-    ft.app(target=main, view=ft.WEB_BROWSER, port=30018, host="0.0.0.0")
+    ft.app(target=main, view=ft.WEB_BROWSER)# port=30018, host="0.0.0.0")

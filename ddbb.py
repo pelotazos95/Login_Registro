@@ -1,5 +1,5 @@
 import psycopg2
-from flet.core import page
+import loginPage
 
 
 def connect():
@@ -8,7 +8,7 @@ def connect():
         user="postgres",
         password="51_dam56",
         host="192.160.51.156",
-        port="4445"
+        port="5432"
     )
     return conn
 
@@ -53,17 +53,17 @@ def comprobar_usuario(v_email,v_passwd):
         cursor = conn.cursor()
         query = """
             select email,passwd from usuarios
-            where email = ?
-            and passwd = ?;
+            where email = %s AND passwd = %s;
             """
         cursor.execute(query, (v_email, v_passwd))
         resultado = cursor.fetchone()
 
         if resultado is None:
             print("Usuario no existe")
+            conn.close()
         else:
-            page.go("/infoPage")
-            page.update()
+            print("USUARIO CORRECTO")
+            loginPage.volver_infoPage()
 
     except Exception as e:
         print(e)
