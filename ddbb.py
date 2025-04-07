@@ -4,16 +4,16 @@ import loginPage
 
 def connect():
     conn = psycopg2.connect(
-        #dbname="sistemas",
-        #user="postgres",
-        #password="1234",
-        #host="localhost",
-        #port="5432"
-        dbname = "basedatos_e",
-        user = "postgres",
-        password = "51_dam56",
-        host = "192.160.51.156",
-        port = "5432"
+        dbname="sistemas",
+        user="postgres",
+        password="1234",
+        host="localhost",
+        port="5432"
+        #dbname = "basedatos_e",
+        #user = "postgres",
+        #password = "51_dam56",
+        #host = "192.160.51.156",
+        #port = "5432"
     )
     return conn
 
